@@ -6,84 +6,91 @@ export default function BunkAssist() {
     const [subjectEntered, setSubjectEntered] = useState(false)
     const [newAttendance, setNewAttendance] = useState("")
     const [difference, setDifference] = useState("")
-    
     const [done, setDone] = useState(false)
 
     const onSubmit = (event) => {
         event.preventDefault()
-        setSubjectEntered(true)
+        const form = event.target;
+        if(form.checkValidity()){
 
-        const subjects = document.getElementById('sub').value
-        const arr = []
-        for (let i = 0; i < subjects; i++) {
-            arr.push(i);
+            setSubjectEntered(true)
+    
+            const subjects = document.getElementById('sub').value
+            const arr = []
+            for (let i = 0; i < subjects; i++) {
+                arr.push(i);
+            }
+            setSubjectArea(arr)
         }
-        setSubjectArea(arr)
+        form.classList.add("was-validated");
     }
 
 
     const handleSubmit = (event) => {
+
         event.preventDefault()
-        // let arr2 = subjectArea;
-        let totalAttended = 0;
-        for (let i = 0; i < subjectArea.length; i++) {
-            const inputValue = document.getElementById(`sub${i}`).value;
-            const numericValue = parseInt(inputValue, 10);
-            totalAttended = totalAttended + numericValue;
+        const form = event.target;
+
+        if (form.checkValidity()) {
+            let totalAttended = 0;
+            for (let i = 0; i < subjectArea.length; i++) {
+                const inputValue = document.getElementById(`sub${i}`).value;
+                const numericValue = parseInt(inputValue, 10);
+                totalAttended = totalAttended + numericValue;
+            }
+
+            const currentAttendance = parseFloat(document.getElementById('currentAttendance').value);
+            const bunks = parseInt(document.getElementById('bunks').value);
+            const attend = parseInt(document.getElementById('attend').value);
+
+            let totalLectures = (totalAttended * 100) / currentAttendance;
+            totalLectures = parseInt(totalLectures)
+
+            const newTotal = totalLectures + bunks + attend;
+            const attended = totalAttended + attend;
+
+            const newAttendance = parseFloat(((attended / newTotal) * 100)).toFixed(3);
+            setNewAttendance(newAttendance);
+
+            let diff;
+            if (newAttendance > currentAttendance) {
+                diff = "Attendance Increased by " + (newAttendance - currentAttendance).toFixed(3);
+            } else {
+                diff = "Attendance Decreased by " + (currentAttendance - newAttendance).toFixed(3);
+            }
+            setDifference(diff);
+            setDone(true)
         }
-        console.log("Total Lectures", parseInt(totalAttended))
-
-        const currentAttendance = document.getElementById('currentAttendance').value;
-        const bunks = parseInt(document.getElementById('bunks').value);
-        const attend = parseInt(document.getElementById('attend').value);
-        // console.log(bunks)
-        // console.log(attend)
-
-        let totalLectures = (totalAttended * 100) / currentAttendance;
-        totalLectures = parseInt(totalLectures)
-        console.log("Total Lectures", totalLectures)
-
-        const newTotal = totalLectures + bunks + attend;
-        console.log("newTotal", parseInt(newTotal))
-
-        const attended = totalAttended + attend;
-        console.log("totalAttended", parseInt(attended))
-
-        const newAttendance = ((attended / newTotal) * 100).toFixed(3);
-        console.log("New Attendance", newAttendance);
-        setNewAttendance(newAttendance);
-        
-        let diff;
-        if (newAttendance > currentAttendance) {
-          diff = "Attendance Increased by " + (newAttendance - currentAttendance).toFixed(3);
-        } else {
-          diff = "Attendance Decreased by " + (currentAttendance - newAttendance).toFixed(3);
-        }
-        setDifference(diff);
-        setDone(true)
+        form.classList.add('was-validated')
     }
+
 
     return (
         <>
+            <div className='p-3 mt-5'>
+                <h5 className='text-center'>Wondering if you can skip a few lectures?</h5>
+                <p className='text-center '>With BunkBuddy, simply input the number of classes you're considering missing, and get an instant projection of how your attendance will be affected. Stay informed, make informed choices, and keep your attendance on track with BunkBuddy.</p>
+            </div>
             {
                 subjectEntered ?
 
-                    <form onSubmit={handleSubmit} className="container h-100 p-3 needs-validation" noValidate>
-                        <div className="row g-3">
+                    <form onSubmit={handleSubmit} className="container h-100 px-5 py-3 needs-validation" noValidate>
+
+                        <div className="row row-cols-sm-2 g-3">
 
                             {
                                 subjectArea.map((sub, index) =>
                                     <div className="col-md-3" key={index}>
                                         <div className="form-floating">
                                             <input
-                                                type="number"
+                                                type="tel"
+                                                maxLength={2}
                                                 className="form-control"
                                                 name={`sub${index + 1}`}
                                                 id={`sub${index}`}
-                                                // onChange={(event) => handleChange(event, index)}
                                                 required
                                             />
-                                            <label htmlFor="sub1">{`sub${index + 1}`}</label>
+                                            <label htmlFor={`sub${index}`}>{`Present Lectures in Subject ${index + 1}`}</label>
                                             <div className="invalid-feedback">
                                                 Please choose This Subject
                                             </div>
@@ -96,10 +103,18 @@ export default function BunkAssist() {
                         <div className="row my-3">
                             <div className="col-md-3">
                                 <div className="form-floating">
-                                    <input type="number" className="form-control" id="currentAttendance" name="currentAttendance" required />
-                                    <label htmlFor="businessName">Current Attendance</label>
+                                    <input
+                                        type="tel"
+                                        step="0.01"
+                                        maxLength={5}
+                                        className="form-control"
+                                        id="currentAttendance"
+                                        name="currentAttendance"
+                                        required
+                                    />
+                                    <label htmlFor="currentAttendance">Current Attendance</label>
                                     <div className="invalid-feedback">
-                                        Please choose Business Name.
+                                        Please enter Current Attendance.
                                     </div>
                                 </div>
                             </div>
@@ -107,59 +122,87 @@ export default function BunkAssist() {
                         <div className="row g-3">
                             <div className="col-md-3">
                                 <div className="form-floating">
-                                    <input type="number" className="form-control" id="bunks" name="bunks" required />
-                                    <label htmlFor="businessName">Enter Bunks</label>
+                                    <input
+                                        type="tel"
+                                        maxLength={2}
+                                        className="form-control"
+                                        id="bunks"
+                                        name="bunks"
+                                        required
+                                    />
+                                    <label htmlFor="bunks">Enter Bunks</label>
                                     <div className="invalid-feedback">
-                                        Please choose Business Name.
+                                        Please Enter Bunks
                                     </div>
                                 </div>
                             </div>
                             <div className="col-md-3">
                                 <div className="form-floating">
-                                    <input type="number" className="form-control" id="attend" name="attend" required />
-                                    <label htmlFor="businessName">classes you want to attend</label>
+                                    <input
+                                        type="tel"
+                                        maxLength={2}
+                                        className="form-control"
+                                        id="attend"
+                                        name="attend"
+                                        required
+                                    />
+                                    <label htmlFor="attend">Classes Attended</label>
                                     <div className="invalid-feedback">
-                                        Please choose Business Name.
+                                        Please Enter Number of Classes you want to attend
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="row g-3">
                             <div className="col text-center">
-                                <button className="btn btn-success mt-3" type="submit">Submit</button>
+                                <button className="btn custom-color shadow mt-3" type="submit">Submit</button>
                             </div>
                         </div>
                     </form >
 
                     :
 
-                    <form onSubmit={onSubmit} className="container h-100 mt-5 p-3 " noValidate>
-                        <div className="row g-3">
-                            <div className="col-md-3">
-                                <div className="form-floating">
-                                    <input type="number" className="form-control" id="sub" name="subjects" required />
-                                    <label htmlFor="businessName">Enter Subjects</label>
+                    <form onSubmit={onSubmit} className="container h-100 mt-5 px-5 py-3 needs-validation" noValidate>
+                        <div className="row d-flex justify-content-center align-items-center">
+                            <div className="col-md-3 ">
+                                <div className="form-floating ">
+                                    <input
+                                        type='number'
+                                        min='1'
+                                        max='50'
+                                        className="form-control shadow"
+                                        id="sub"
+                                        name="subjects"
+                                        required
+                                    />
+                                    <label htmlFor="sub">Enter Total Subjects(as per ERP)</label>
                                     <div className="invalid-feedback">
-                                        Please Enter Subjects
+                                        Please Enter a valid Subject Value.<br />(cannot be greater than 50)
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col text-center">
-                                <button className="btn btn-success mt-3 " type="submit">Proceed</button>
+                                <button className="btn custom-color shadow mt-3 px-3 py-2 " type="submit">Proceed</button>
                             </div>
                         </div>
                     </form>
             }
+            
+            {
+                done &&
+                <div className='m-3 pb-4'>
+                    <h2>New Attendance: {newAttendance}</h2>
+                    <h4>{difference}</h4>
+                </div>
+            }
 
-{
-    done &&
-        <div className='m-3'>
-            <h2>New Attendance: {newAttendance}</h2>
-            <h4>{difference}</h4>
-        </div>
-}
+                {/*New Features  */}
+
+            {/* <div className='text-center'>
+                <button onClick={toggleClick} className='btn btn-outline-primary'>How to Use</button>
+            </div> */}
         </>
     )
 }
