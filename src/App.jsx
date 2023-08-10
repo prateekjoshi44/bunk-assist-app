@@ -10,7 +10,8 @@ function App() {
   return (
     <>
       <div className="App">
-      <h1 className="p-4  text-center">Welcome to Bunk Assist</h1>
+      <h1 className="p-4 pb-0 custom-font text-center">BunkBuddy</h1>
+      <p className="text-center px-3">BunkBuddy is the ultimate bunk assistant app that takes the guesswork out of attendance management.</p>
         <BunkAssist />
       </div>
 
