@@ -76,7 +76,7 @@ export default function BunkAssist() {
 
                     <form onSubmit={handleSubmit} className="container h-100 px-5 py-3 needs-validation" noValidate>
 
-                        <div className="row row-cols-sm-2 g-3">
+                        <div className="row row-cols-lg-4 g-3">
 
                             {
                                 subjectArea.map((sub, index) =>
@@ -90,7 +90,7 @@ export default function BunkAssist() {
                                                 id={`sub${index}`}
                                                 required
                                             />
-                                            <label htmlFor={`sub${index}`}>{`Present Lectures in Subject ${index + 1}`}</label>
+                                            <label htmlFor={`sub${index}`}>{`Lectures Attended in Subject ${index + 1}`}</label>
                                             <div className="invalid-feedback">
                                                 Please choose This Subject
                                             </div>
@@ -107,14 +107,14 @@ export default function BunkAssist() {
                                         type="tel"
                                         step="0.01"
                                         maxLength={5}
-                                        className="form-control"
+                                        className="form-control p-2"
                                         id="currentAttendance"
                                         name="currentAttendance"
                                         required
                                     />
-                                    <label htmlFor="currentAttendance">Current Attendance</label>
+                                    <label htmlFor="currentAttendance">Current Attendance Percentage</label>
                                     <div className="invalid-feedback">
-                                        Please enter Current Attendance.
+                                        Please enter Current Attendance Percentage.
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@ export default function BunkAssist() {
                                         name="attend"
                                         required
                                     />
-                                    <label htmlFor="attend">Classes Attended</label>
+                                    <label htmlFor="attend">Lectures you want to Attend</label>
                                     <div className="invalid-feedback">
                                         Please Enter Number of Classes you want to attend
                                     </div>
