@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import bg from '../assets/images/2.jpg'
 export default function BunkAssist() {
 
     const [subjectArea, setSubjectArea] = useState([])
@@ -67,8 +67,9 @@ export default function BunkAssist() {
 
     return (
         <>
-            <div className='p-3 mt-5'>
-                <h5 className='text-center'>Wondering if you can skip a few lectures?</h5>
+            <div className='p-3'>
+                <img className="w-100"src={bg} alt="not found" />
+                <h5 className='text-center custom-text-color'>Wondering if you can skip a few lectures?</h5>
                 <p className='text-center '>With BunkBuddy, simply input the number of classes you're considering missing, and get an instant projection of how your attendance will be affected. Stay informed, make informed choices, and keep your attendance on track with BunkBuddy.</p>
             </div>
             {
@@ -85,9 +86,10 @@ export default function BunkAssist() {
                                             <input
                                                 type="tel"
                                                 maxLength={2}
-                                                className="form-control"
+                                                className="form-control shadow border border-primary"
                                                 name={`sub${index + 1}`}
                                                 id={`sub${index}`}
+                                                placeholder=""
                                                 required
                                             />
                                             <label htmlFor={`sub${index}`}>{`Lectures Attended in Subject ${index + 1}`}</label>
@@ -107,9 +109,10 @@ export default function BunkAssist() {
                                         type="tel"
                                         step="0.01"
                                         maxLength={5}
-                                        className="form-control p-2"
+                                        className="form-control shadow border border-primary"
                                         id="currentAttendance"
                                         name="currentAttendance"
+                                        placeholder=""
                                         required
                                     />
                                     <label htmlFor="currentAttendance">Current Attendance Percentage</label>
@@ -125,9 +128,10 @@ export default function BunkAssist() {
                                     <input
                                         type="tel"
                                         maxLength={2}
-                                        className="form-control"
+                                        className="form-control shadow border border-primary"
                                         id="bunks"
                                         name="bunks"
+                                        placeholder=""
                                         required
                                     />
                                     <label htmlFor="bunks">Enter Bunks</label>
@@ -141,9 +145,10 @@ export default function BunkAssist() {
                                     <input
                                         type="tel"
                                         maxLength={2}
-                                        className="form-control"
+                                        className="form-control shadow border border-primary"
                                         id="attend"
                                         name="attend"
+                                        placeholder=""
                                         required
                                     />
                                     <label htmlFor="attend">Lectures you want to Attend</label>
@@ -155,7 +160,7 @@ export default function BunkAssist() {
                         </div>
                         <div className="row g-3">
                             <div className="col text-center">
-                                <button className="btn custom-color shadow mt-3" type="submit">Submit</button>
+                                <button className="rounded-2 px-3 py-2 custom-color shadow mt-3" type="submit">Submit</button>
                             </div>
                         </div>
                     </form >
@@ -170,8 +175,9 @@ export default function BunkAssist() {
                                         type='number'
                                         min='1'
                                         max='50'
-                                        className="form-control shadow"
+                                        className="form-control shadow border border-primary"
                                         id="sub"
+                                        placeholder=""
                                         name="subjects"
                                         required
                                     />
@@ -184,7 +190,7 @@ export default function BunkAssist() {
                         </div>
                         <div className="row">
                             <div className="col text-center">
-                                <button className="btn custom-color shadow mt-3 px-3 py-2 " type="submit">Proceed</button>
+                                <button className=" rounded-2 custom-color shadow mt-3 px-3 py-2 " type="submit">Proceed</button>
                             </div>
                         </div>
                     </form>

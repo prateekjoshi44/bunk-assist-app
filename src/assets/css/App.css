@@ -28,9 +28,9 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   position: relative;
-  color: #fff;
+  /* color: #fff; */
   font-family: "Centra", sans-serif !important;
-  background-image: url(../images/brian-patrick-tagalog-_8hGFBxWD0A-unsplash.jpg);
+  /* background-image: url(../images/8609213_5853.jpg); */
   background-color: transparent;
   background-repeat: repeat-y;
   overflow: scroll;
@@ -63,31 +63,23 @@ ul {
 }
 
 .custom-font {
-  font-family: 'Futura Bold',sans-serif;
+  font-family: "Futura Bold", sans-serif;
   font-weight: 800;
 }
 
 .custom-color {
   color: #fff;
-  background: hsla(165, 60%, 11%, 1);
+  background: hsla(214, 92%, 47%, 1);
 
-  background: linear-gradient(
-    135deg,
-    hsla(165, 60%, 11%, 1) 0%,
-    hsla(149, 54%, 31%, 1) 100%
-  );
-
-  background: -moz-linear-gradient(
-    135deg,
-    hsla(165, 60%, 11%, 1) 0%,
-    hsla(149, 54%, 31%, 1) 100%
-  );
-
-  background: -webkit-linear-gradient(
-    135deg,
-    hsla(165, 60%, 11%, 1) 0%,
-    hsla(149, 54%, 31%, 1) 100%
-  );
-
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0B2C24", endColorstr="#247A4D", GradientType=1 );
+  background: linear-gradient(270deg, hsla(214, 92%, 47%, 1) 0%, hsla(231, 85%, 24%, 1) 100%);
+  
+  background: -moz-linear-gradient(270deg, hsla(214, 92%, 47%, 1) 0%, hsla(231, 85%, 24%, 1) 100%);
+  
+  background: -webkit-linear-gradient(270deg, hsla(214, 92%, 47%, 1) 0%, hsla(231, 85%, 24%, 1) 100%);
+  
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0968E5", endColorstr="#091970", GradientType=1 );
+}
+.custom-text-color {
+  /* color:#1e458a; */
+  color:  #010C80;
 }
