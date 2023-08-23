@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import bg from '../assets/images/2.jpg'
+import frontimg from '../assets/images/2.jpg'
 export default function BunkAssist() {
 
     const [subjectArea, setSubjectArea] = useState([])
@@ -67,9 +67,9 @@ export default function BunkAssist() {
 
     return (
         <>
-            <div className='p-3'>
-                <img className="w-100"src={bg} alt="not found" />
-                <h5 className='text-center custom-text-color'>Wondering if you can skip a few lectures?</h5>
+            <div className='p-3 m-3'>
+                <img className="w-100"src={frontimg} alt="image not found" />
+                <h4 className='text-center custom-text-color'>Wondering if you can skip a few lectures?</h4>
                 <p className='text-center '>With BunkBuddy, simply input the number of classes you're considering missing, and get an instant projection of how your attendance will be affected. Stay informed, make informed choices, and keep your attendance on track with BunkBuddy.</p>
             </div>
             {
@@ -77,7 +77,7 @@ export default function BunkAssist() {
 
                     <form onSubmit={handleSubmit} className="container h-100 px-5 py-3 needs-validation" noValidate>
 
-                        <div className="row row-cols-lg-4 g-3">
+                        <div className="row row-cols-sm-2 g-3">
 
                             {
                                 subjectArea.map((sub, index) =>
@@ -86,13 +86,13 @@ export default function BunkAssist() {
                                             <input
                                                 type="tel"
                                                 maxLength={2}
-                                                className="form-control shadow border border-primary"
+                                                className="form-control shadow border border-primary text-center  "
                                                 name={`sub${index + 1}`}
                                                 id={`sub${index}`}
-                                                placeholder=""
+                                                
                                                 required
                                             />
-                                            <label htmlFor={`sub${index}`}>{`Lectures Attended in Subject ${index + 1}`}</label>
+                                            <label className='w-100 text-center' htmlFor={`sub${index}`}>{`Lectures Attended in Subject ${index + 1}`}</label>
                                             <div className="invalid-feedback">
                                                 Please choose This Subject
                                             </div>
@@ -109,13 +109,13 @@ export default function BunkAssist() {
                                         type="tel"
                                         step="0.01"
                                         maxLength={5}
-                                        className="form-control shadow border border-primary"
+                                        className="form-control shadow border border-primary text-center "
                                         id="currentAttendance"
                                         name="currentAttendance"
-                                        placeholder=""
+                                        
                                         required
                                     />
-                                    <label htmlFor="currentAttendance">Current Attendance Percentage</label>
+                                    <label className='w-100 text-center' htmlFor="currentAttendance">Current Attendance Percentage</label>
                                     <div className="invalid-feedback">
                                         Please enter Current Attendance Percentage.
                                     </div>
@@ -128,10 +128,10 @@ export default function BunkAssist() {
                                     <input
                                         type="tel"
                                         maxLength={2}
-                                        className="form-control shadow border border-primary"
+                                        className="form-control shadow border border-primary text-center"
                                         id="bunks"
                                         name="bunks"
-                                        placeholder=""
+                                        
                                         required
                                     />
                                     <label htmlFor="bunks">Enter Bunks</label>
@@ -145,10 +145,10 @@ export default function BunkAssist() {
                                     <input
                                         type="tel"
                                         maxLength={2}
-                                        className="form-control shadow border border-primary"
+                                        className="form-control shadow border border-primary text-center"
                                         id="attend"
                                         name="attend"
-                                        placeholder=""
+                                        
                                         required
                                     />
                                     <label htmlFor="attend">Lectures you want to Attend</label>
@@ -160,37 +160,37 @@ export default function BunkAssist() {
                         </div>
                         <div className="row g-3">
                             <div className="col text-center">
-                                <button className="rounded-2 px-3 py-2 custom-color shadow mt-3" type="submit">Submit</button>
+                                <button className="button-85 mt-3" type="submit">Submit</button>
                             </div>
                         </div>
                     </form >
 
                     :
 
-                    <form onSubmit={onSubmit} className="container h-100 mt-5 px-5 py-3 needs-validation" noValidate>
+                    <form onSubmit={onSubmit} className="container h-100 mt-3 px-5 py-3 needs-validation" noValidate>
                         <div className="row d-flex justify-content-center align-items-center">
                             <div className="col-md-3 ">
-                                <div className="form-floating ">
+                                <div className="form-floati">
+                                    <label  className="w-100 text-center"htmlFor="sub">Enter Total Subjects(as per ERP)</label>
                                     <input
                                         type='number'
                                         min='1'
-                                        max='50'
-                                        className="form-control shadow border border-primary"
+                                        max='15'
+                                        className="form-control shadow border border-primary  text-center px-3"
                                         id="sub"
-                                        placeholder=""
+                                        
                                         name="subjects"
                                         required
                                     />
-                                    <label htmlFor="sub">Enter Total Subjects(as per ERP)</label>
                                     <div className="invalid-feedback">
-                                        Please Enter a valid Subject Value.<br />(cannot be greater than 50)
+                                        Please Enter a valid Subject Value.<br />(cannot be greater than 15)
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col text-center">
-                                <button className=" rounded-2 custom-color shadow mt-3 px-3 py-2 " type="submit">Proceed</button>
+                                <button className="button-85 mt-3" type="submit">Proceed</button>
                             </div>
                         </div>
                     </form>
