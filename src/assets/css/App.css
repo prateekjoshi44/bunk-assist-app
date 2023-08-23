@@ -25,17 +25,19 @@
 }
 
 body {
-  font-weight: 400;
+  font-weight: 500;
   overflow-x: hidden;
   position: relative;
   /* color: #fff; */
   font-family: "Centra", sans-serif !important;
   /* background-image: url(../images/8609213_5853.jpg); */
-  background-color: transparent;
+  /* background-color: transparent; */
   background-repeat: repeat-y;
   overflow: scroll;
-  opacity: 75;
+  /* opacity: 75; */
   background-size: cover;
+  /* background: rgb(2,0,36); */
+/* background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
   height: 100vh;
   /* background-position: relative; */
 }
@@ -67,6 +69,12 @@ ul {
   font-weight: 800;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .custom-color {
   color: #fff;
   background: hsla(214, 92%, 47%, 1);
@@ -82,4 +90,76 @@ ul {
 .custom-text-color {
   /* color:#1e458a; */
   color:  #010C80;
+}
+
+
+
+
+
+/* CSS */
+.button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
 }
