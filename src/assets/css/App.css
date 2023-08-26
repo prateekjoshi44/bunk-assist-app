@@ -71,15 +71,16 @@ ul {
   /* font-size: 2.8rem ; */
 }
 
-/* input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-} */
-
 .custom-text-color {
   /* color:#1e458a; */
   color:  #010C80;
+}
+
+/* Remove Textbox arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .result-color{
