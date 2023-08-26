@@ -65,38 +65,33 @@ ul {
 }
 
 .custom-font {
-  font-family: "Futura Bold", sans-serif;
+  font-family: "poppins",sans-serif;
   font-weight: 800;
+  /* letter-spacing: 0.5px; */
+  /* font-size: 2.8rem ; */
 }
 
-input::-webkit-outer-spin-button,
+/* input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */
 
-.custom-color {
-  color: #fff;
-  background: hsla(214, 92%, 47%, 1);
-
-  background: linear-gradient(270deg, hsla(214, 92%, 47%, 1) 0%, hsla(231, 85%, 24%, 1) 100%);
-  
-  background: -moz-linear-gradient(270deg, hsla(214, 92%, 47%, 1) 0%, hsla(231, 85%, 24%, 1) 100%);
-  
-  background: -webkit-linear-gradient(270deg, hsla(214, 92%, 47%, 1) 0%, hsla(231, 85%, 24%, 1) 100%);
-  
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0968E5", endColorstr="#091970", GradientType=1 );
-}
 .custom-text-color {
   /* color:#1e458a; */
   color:  #010C80;
 }
 
+.result-color{
+  background: #3321D1;
+  background: linear-gradient(to right, #3321D1 21%, #2BBDB8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  
+
+}
 
 
-
-
-/* CSS */
+/* Button */
 .button-85 {
   padding: 0.6em 2em;
   border: none;

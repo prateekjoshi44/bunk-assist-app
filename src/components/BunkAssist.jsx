@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import frontimg from '../assets/images/2.jpg'
 export default function BunkAssist() {
 
@@ -49,14 +49,14 @@ export default function BunkAssist() {
             const newTotal = totalLectures + bunks + attend;
             const attended = totalAttended + attend;
 
-            const newAttendance = parseFloat(((attended / newTotal) * 100)).toFixed(3);
+            const newAttendance = parseFloat(((attended / newTotal) * 100)).toFixed(2);
             setNewAttendance(newAttendance);
 
             let diff;
             if (newAttendance > currentAttendance) {
-                diff = "Attendance Increased by " + (newAttendance - currentAttendance).toFixed(3);
+                diff = "Attendance Increased by: " + (newAttendance - currentAttendance).toFixed(2) + "%";
             } else {
-                diff = "Attendance Decreased by " + (currentAttendance - newAttendance).toFixed(3);
+                diff = "Attendance Decreased by: " + (currentAttendance - newAttendance).toFixed(2) + "%";
             }
             setDifference(diff);
             setDone(true)
@@ -64,18 +64,25 @@ export default function BunkAssist() {
         form.classList.add('was-validated')
     }
 
+    // useEffect(()=>{
+    //     document.getElementById('form')
+    //     if(done){
+    //         form.classList.add("d-none")
+    //     }
+    // },[done])
+
 
     return (
         <>
             <div className='p-3 m-3'>
-                <img className="w-100"src={frontimg} alt="image not found" />
+                <img className="w-100 text-center"src={frontimg} alt="image not found" />
                 <h4 className='text-center custom-text-color'>Wondering if you can skip a few lectures?</h4>
                 <p className='text-center '>With BunkBuddy, simply input the number of classes you're considering missing, and get an instant projection of how your attendance will be affected. Stay informed, make informed choices, and keep your attendance on track with BunkBuddy.</p>
             </div>
             {
                 subjectEntered ?
 
-                    <form onSubmit={handleSubmit} className="container h-100 px-5 py-3 needs-validation" noValidate>
+                    <form onSubmit={handleSubmit} className={done ? "d-none" : "container h-100 px-5 py-3 needs-validation"} noValidate>
 
                         <div className="row row-cols-sm-2 g-3">
 
@@ -167,7 +174,7 @@ export default function BunkAssist() {
 
                     :
 
-                    <form onSubmit={onSubmit} className="container h-100 mt-3 px-5 py-3 needs-validation" noValidate>
+                    <form onSubmit={onSubmit} id='form' className="container h-100 mt-3 px-5 py-3 needs-validation" noValidate>
                         <div className="row d-flex justify-content-center align-items-center">
                             <div className="col-md-3 ">
                                 <div className="form-floati">
@@ -198,8 +205,8 @@ export default function BunkAssist() {
             
             {
                 done &&
-                <div className='m-3 pb-4'>
-                    <h2>New Attendance: {newAttendance}</h2>
+                <div className='mx-3 mt-5  px-3 pb-4 text-center'>
+                    <h1 className='custom-font result-color'>New Attendance: {newAttendance}%</h1>
                     <h4>{difference}</h4>
                 </div>
             }
