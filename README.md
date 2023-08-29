@@ -1,8 +1,3 @@
-# React + Vite
+![image](https://github.com/prateekjoshi44/bunk-assist-app/assets/112314777/b96823d9-12b5-41a1-8b75-426100022641)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Input the number of classes you've attended in each subject and your current attendance percentage. The app will then work and predict your attendance after you've taken that much-needed break.
