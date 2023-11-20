@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import frontimg from '../assets/images/2.jpg'
+
 export default function BunkAssist() {
 
     const [subjectArea, setSubjectArea] = useState([])
@@ -32,22 +33,28 @@ export default function BunkAssist() {
         const form = event.target;
 
         if (form.checkValidity()) {
-            let totalAttended = 0;
+
+            //adding the total lectures of each subject
+            let totalLec = 0;
             for (let i = 0; i < subjectArea.length; i++) {
                 const inputValue = document.getElementById(`sub${i}`).value;
                 const numericValue = parseInt(inputValue, 10);
-                totalAttended = totalAttended + numericValue;
+                totalLec = totalLec + numericValue;
             }
-
+            //
             const currentAttendance = parseFloat(document.getElementById('currentAttendance').value);
             const bunks = parseInt(document.getElementById('bunks').value);
             const attend = parseInt(document.getElementById('attend').value);
 
-            let totalLectures = (totalAttended * 100) / currentAttendance;
-            totalLectures = parseInt(totalLectures)
+            // let totalLectures = (totalAttended * 100) / currentAttendance;
+            // totalLectures = parseInt(totalLectures)
+            let LecAtt= (totalLec*currentAttendance)/100;
+            LecAtt = parseInt(LecAtt)
 
-            const newTotal = totalLectures + bunks + attend;
-            const attended = totalAttended + attend;
+            // const newTotal = totalLectures + bunks + attend;
+            // const attended = totalAttended + attend;
+            const newTotal = totalLec + bunks + attend;
+            const attended = LecAtt + attend;
 
             const newAttendance = parseFloat(((attended / newTotal) * 100)).toFixed(2);
             setNewAttendance(newAttendance);
@@ -63,13 +70,6 @@ export default function BunkAssist() {
         }
         form.classList.add('was-validated')
     }
-
-    // useEffect(()=>{
-    //     document.getElementById('form')
-    //     if(done){
-    //         form.classList.add("d-none")
-    //     }
-    // },[done])
 
 
     return (
@@ -96,10 +96,9 @@ export default function BunkAssist() {
                                                 className="form-control shadow border border-primary text-center  "
                                                 name={`sub${index + 1}`}
                                                 id={`sub${index}`}
-                                                
                                                 required
                                             />
-                                            <label className='w-100 text-center' htmlFor={`sub${index}`}>{`Lectures Attended in Subject ${index + 1}`}</label>
+                                            <label className='w-100 text-center' htmlFor={`sub${index}`}>{`Total Lectures in Subject ${index + 1}`}</label>
                                             <div className="invalid-feedback">
                                                 Please choose This Subject
                                             </div>
@@ -119,7 +118,6 @@ export default function BunkAssist() {
                                         className="form-control shadow border border-primary text-center "
                                         id="currentAttendance"
                                         name="currentAttendance"
-                                        
                                         required
                                     />
                                     <label className='w-100 text-center' htmlFor="currentAttendance">Current Attendance Percentage</label>
